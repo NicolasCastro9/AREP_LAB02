@@ -1,0 +1,63 @@
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Form Example</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                background-color: #00eeff;
+            }
+
+            h1,label {
+                color: rgb(0, 0, 0);
+                font-size: 40px;
+            }
+
+            form {
+                margin-top: 20px;
+            }
+
+            #getrespmsg {
+                margin-top: 20px;
+            }
+            input[type="button"] {
+                background-color: purple;
+                color: rgb(0, 0, 0);
+                border: none;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <center><h1>Introduce el nombre de la película</h1></center>
+        <center><form action="/hello">
+            <label for="name">Titulo</label><br>
+            <input type="text" id="name" name="name" value=""><br><br>
+            <input type="button" value="Submit" onclick="loadGetMsg()">
+        </form></center>
+        <br>
+        <div id="getrespmsg"></div>
+
+        <script>
+            function loadGetMsg() {
+                let nameVar = document.getElementById("name").value;
+                const xhttp = new XMLHttpRequest();
+                xhttp.onload = function() {
+                    document.getElementById("getrespmsg").innerHTML =
+                    this.responseText;
+                }
+                xhttp.open("GET", "/title?name="+nameVar);
+                xhttp.send();
+            }
+        </script>
+
+    </body>
+</html>

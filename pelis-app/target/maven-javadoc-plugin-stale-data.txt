@@ -1,0 +1,48 @@
+@options
+@packages
+-classpath
+'C:/Users/Lenovo/.m2/repository/com/google/code/gson/gson/2.8.8/gson-2.8.8.jar'
+-encoding
+'Cp1252'
+-protected
+-sourcepath
+'C:/Users/Lenovo/Documents/2024/AREP/LABORATORIOS/AREP_LAB01/pelis-app/src/main/java;C:/Users/Lenovo/Documents/2024/AREP/LABORATORIOS/AREP_LAB01/pelis-app/target/generated-sources/annotations'
+-author
+-bottom
+'Copyright &#169; 2024. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/Lenovo/Documents/2024/AREP/LABORATORIOS/AREP_LAB01/pelis-app/target/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'miprimera-app 1.0-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/javase/8/docs/api' 'C:/Users/Lenovo/Documents/2024/AREP/LABORATORIOS/AREP_LAB01/pelis-app/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'miprimera-app 1.0-SNAPSHOT API'
+edu.escuelaing.arem.ASE.app
+C:\Users\Lenovo\.m2\repository\com\google\code\gson\gson\2.8.8\gson-2.8.8.jar = 1629475731000
+C:\Users\Lenovo\Documents\2024\AREP\LABORATORIOS\AREP_LAB01\pelis-app\src\main\java = 1706752421742
+C:\Users\Lenovo\Documents\2024\AREP\LABORATORIOS\AREP_LAB01\pelis-app\target\generated-sources\annotations = 1706752469398
+C:\Users\Lenovo\Documents\2024\AREP\LABORATORIOS\AREP_LAB01\pelis-app\target\apidocs\allclasses-index.html = 1706752475843
+C:\Users\Lenovo\Documents\2024\AREP\LABORATORIOS\AREP_LAB01\pelis-app\target\apidocs\allpackages-index.html = 1706752475843
+C:\Users\Lenovo\Documents\2024\AREP\LABORATORIOS\AREP_LAB01\pelis-app\target\apidocs\constant-values.html = 1706752475680
+C:\Users\Lenovo\Documents\2024\AREP\LABORATORIOS\AREP_LAB01\pelis-app\target\apidocs\deprecated-list.html = 1706752475743
+C:\Users\Lenovo\Documents\2024\AREP\LABORATORIOS\AREP_LAB01\pelis-app\target\apidocs\element-list = 1706752475665
+C:\Users\Lenovo\Documents\2024\AREP\LABORATORIOS\AREP_LAB01\pelis-app\target\apidocs\help-doc.html = 1706752475865
+C:\Users\Lenovo\Documents\2024\AREP\LABORATORIOS\AREP_LAB01\pelis-app\target\apidocs\index-all.html = 1706752475828
+C:\Users\Lenovo\Documents\2024\AREP\LABORATORIOS\AREP_LAB01\pelis-app\target\apidocs\index.html = 1706752475859
+C:\Users\Lenovo\Documents\2024\AREP\LABORATORIOS\AREP_LAB01\pelis-app\target\apidocs\jquery-ui.overrides.css = 1706752475966
+C:\Users\Lenovo\Documents\2024\AREP\LABORATORIOS\AREP_LAB01\pelis-app\target\apidocs\member-search-index.js = 1706752475828
+C:\Users\Lenovo\Documents\2024\AREP\LABORATORIOS\AREP_LAB01\pelis-app\target\apidocs\module-search-index.js = 1706752475812
+C:\Users\Lenovo\Documents\2024\AREP\LABORATORIOS\AREP_LAB01\pelis-app\target\apidocs\overview-tree.html = 1706752475743
+C:\Users\Lenovo\Documents\2024\AREP\LABORATORIOS\AREP_LAB01\pelis-app\target\apidocs\package-search-index.js = 1706752475812
+C:\Users\Lenovo\Documents\2024\AREP\LABORATORIOS\AREP_LAB01\pelis-app\target\apidocs\script.js = 1706752475865
+C:\Users\Lenovo\Documents\2024\AREP\LABORATORIOS\AREP_LAB01\pelis-app\target\apidocs\search.js = 1706752475881
+C:\Users\Lenovo\Documents\2024\AREP\LABORATORIOS\AREP_LAB01\pelis-app\target\apidocs\stylesheet.css = 1706752475865
+C:\Users\Lenovo\Documents\2024\AREP\LABORATORIOS\AREP_LAB01\pelis-app\target\apidocs\tag-search-index.js = 1706752475828
+C:\Users\Lenovo\Documents\2024\AREP\LABORATORIOS\AREP_LAB01\pelis-app\target\apidocs\type-search-index.js = 1706752475812
