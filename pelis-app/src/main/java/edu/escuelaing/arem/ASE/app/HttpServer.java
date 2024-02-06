@@ -58,75 +58,47 @@ public class HttpServer {
                 outputLine = cachedInfo;
             }else {
             // Respuesta HTTP por defecto cuando se hace nueva busqueda o no se encuentra la pelicula
-                outputLine = "HTTP/1.1 200 OK\r\n" +
-                "Content-Type: text/html\r\n" +
-                "\r\n" +
-                "<!DOCTYPE html>\n" +
-                "<html>\n" +
-                "    <head>\n" +
-                "        <title>Movie Search</title>\n" +
-                "        <meta charset=\"UTF-8\">\n" +
-                "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
-                "        <style>\n" +
-                "            body {\n" +
-                "                background-color: #00eeff;\n" +
-                "            }\n" +
-                "\n" +
-                "            h1,label {\n" +
-                "                color: rgb(0, 0, 0);\n" +
-                "                font-size: 40px;\n" +
-                "            }\n" +
-                "\n" +
-                "            form {\n" +
-                "                margin-top: 20px;\n" +
-                "            }\n" +
-                "\n" +
-                "            #getrespmsg {\n" +
-                "                margin-top: 20px;\n" +
-                "            }\n" +
-                "\n" +
-                "            input[type=\"button\"] {\n" +
-                "                background-color: purple;\n" +
-                "                color: white;\n" +
-                "                border: none;\n" +
-                "                padding: 10px 20px;\n" +
-                "                text-align: center;\n" +
-                "                text-decoration: none;\n" +
-                "                display: inline-block;\n" +
-                "                font-size: 16px;\n" +
-                "                cursor: pointer;\n" +
-                "            }\n" +
-                "        </style>\n" +
-                "    </head>\n" +
-                "    <body>\n" +
-                "        <center><h1>MOVIE NAME</h1></center>\n" +
-                "        <center><form action=\"/hello\">\n" +
-                "            <center><label for=\"name\">TITLE:</label><br></center>\n" +
-                "            <input type=\"text\" id=\"name\" name=\"name\" value=\"Guardians of the galaxy\"><br><br>\n" +
-                "            <input type=\"button\" value=\"Submit\" onclick=\"loadGetMsg()\">\n" +
-                "        </form></center>\n" +
-                "        <div id=\"getrespmsg\"></div>\n" +
-                "\n" +
-                "        <script>\n" +
-                "            function loadGetMsg() {\n" +
-                "                let nameVar = document.getElementById(\"name\").value;\n" +
-                "                const xhttp = new XMLHttpRequest();\n" +
-                "                xhttp.onload = function() {\n" +
-                "                    document.getElementById(\"getrespmsg\").innerHTML =\n" +
-                "                    this.responseText;\n" +
-                "                }\n" +
-                "                xhttp.open(\"GET\", \"/title?name=\"+nameVar);\n" +
-                "                xhttp.send();\n" +
-                "            }\n" +
-                "        </script>\n" +
-                "\n" +
-                "    </body>\n" +
-                "</html>";
+                try {
+                    
+                    File file = new File("pelis-app/src/main/Resources/index.html");
+                    String absolutePath = file.getAbsolutePath();
+                    FileReader fileReader = new FileReader(absolutePath);
+
+                    BufferedReader bufferedReader = new BufferedReader(fileReader);
+                    StringBuilder stringBuilder = new StringBuilder();
+                    String line;
+
+                    while ((line = bufferedReader.readLine()) != null) {
+                        stringBuilder.append(line).append("\n");
+                    }
+
+                    fileReader.close();
+                    String content = stringBuilder.toString();
+                    outputLine = "HTTP/1.1 200 OK\r\n" +
+                            "Content-Type: text/html\r\n" +
+                            "Content-Length: " + content.length() + "\r\n" +
+                            "\r\n" +
+                            content;
+                } catch (FileNotFoundException e) {
+                    outputLine = "HTTP/1.1 404 Not Found\r\n" +
+                            "Content-Type: text/html\r\n" +
+                            "\r\n" +
+                            "<!DOCTYPE html>\n" +
+                            "<html>\n" +
+                            "    <head>\n" +
+                            "        <title>404 Not Found</title>\n" +
+                            "    </head>\n" +
+                            "    <body>\n" +
+                            "        <h1>404 Not Found</h1>\n" +
+                            "        <p>The requested resource was not found on this server.</p>\n" +
+                            "    </body>\n" +
+                            "</html>";
             }
-            out.println(outputLine);
-            out.close();
-            in.close();
-            clientSocket.close();
+        }
+        out.println(outputLine);
+        out.close();
+        in.close();
+        clientSocket.close();
             
 
         } catch (IOException e) {

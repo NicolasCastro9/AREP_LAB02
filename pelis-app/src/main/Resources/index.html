@@ -1,31 +1,26 @@
-
-
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Form Example</title>
+        <title>Movie Search</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
             body {
                 background-color: #00eeff;
             }
-
-            h1,label {
+            h1, label {
                 color: rgb(0, 0, 0);
                 font-size: 40px;
             }
-
             form {
                 margin-top: 20px;
             }
-
             #getrespmsg {
                 margin-top: 20px;
             }
             input[type="button"] {
                 background-color: purple;
-                color: rgb(0, 0, 0);
+                color: white;
                 border: none;
                 padding: 10px 20px;
                 text-align: center;
@@ -37,13 +32,14 @@
         </style>
     </head>
     <body>
-        <center><h1>Introduce el nombre de la película</h1></center>
-        <center><form action="/hello">
-            <label for="name">Titulo</label><br>
-            <input type="text" id="name" name="name" value=""><br><br>
-            <input type="button" value="Submit" onclick="loadGetMsg()">
-        </form></center>
-        <br>
+        <center><h1>MOVIE NAME</h1></center>
+        <center>
+            <form action="/hello">
+                <center><label for="name">TITLE:</label><br></center>
+                <input type="text" id="name" name="name" value="Guardians of the galaxy"><br><br>
+                <input type="button" value="Submit" onclick="loadGetMsg()">
+            </form>
+        </center>
         <div id="getrespmsg"></div>
 
         <script>
@@ -52,12 +48,11 @@
                 const xhttp = new XMLHttpRequest();
                 xhttp.onload = function() {
                     document.getElementById("getrespmsg").innerHTML =
-                    this.responseText;
+                        this.responseText;
                 }
-                xhttp.open("GET", "/title?name="+nameVar);
+                xhttp.open("GET", "/title?name=" + nameVar);
                 xhttp.send();
             }
         </script>
-
     </body>
 </html>
