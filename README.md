@@ -33,6 +33,12 @@ Asegúrate de tener instalado Java y Maven en tu máquina antes de ejecutar el p
    http://localhost:35000/styles.css
    http://localhost:35000/tiburon.gif
   ```
+### index.html
+![image](https://github.com/NicolasCastro9/AREP_LAB02/assets/98556822/d1701fc5-8f32-473f-be0d-5b990d2d323e)
+
+### image.jpg
+
+
 
 ## CONSTRUIDO CON
 
