@@ -34,10 +34,25 @@ Asegúrate de tener instalado Java y Maven en tu máquina antes de ejecutar el p
    http://localhost:35000/tiburon.gif
   ```
 ### index.html
+
 ![image](https://github.com/NicolasCastro9/AREP_LAB02/assets/98556822/d1701fc5-8f32-473f-be0d-5b990d2d323e)
+![image](https://github.com/NicolasCastro9/AREP_LAB02/assets/98556822/58c324a7-e981-4c1a-b945-a4fc95116895)
 
 ### image.jpg
 
+![image](https://github.com/NicolasCastro9/AREP_LAB02/assets/98556822/f2faaa29-f17f-4d30-93a9-2a994102f845)
+
+### styles.css
+
+![image](https://github.com/NicolasCastro9/AREP_LAB02/assets/98556822/e87f755e-4d01-4ff4-a9ae-65797c1501bb)
+
+### tiburon.gif
+
+![image](https://github.com/NicolasCastro9/AREP_LAB02/assets/98556822/ffe48ffd-4f1d-446f-b774-b4212c1d25d6)
+
+### script.js
+
+![image](https://github.com/NicolasCastro9/AREP_LAB02/assets/98556822/a6f9b690-e902-4916-a9cf-11eb7a62810f)
 
 
 ## CONSTRUIDO CON
