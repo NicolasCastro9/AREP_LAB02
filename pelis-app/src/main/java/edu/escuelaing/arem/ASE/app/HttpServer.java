@@ -14,7 +14,14 @@ public class HttpServer {
      * @throws IOException Si ocurre un error de entrada/salida al abrir el socket del servidor.
      */
 
-     private static final String STATIC_FILES_PATH = "pelis-app/src/main/Resources/";
+    private static final String STATIC_FILES_PATH = "pelis-app/src/main/Resources/";
+
+    /**
+     * Método principal que inicia el servidor y escucha conexiones en el puerto 35000.
+     * 
+     * @param args Argumentos de línea de comandos (no utilizados).
+     * @throws IOException Si ocurre un error de entrada/salida al abrir el socket del servidor.
+     */
     public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = null;
 
@@ -76,6 +83,15 @@ public class HttpServer {
         }
     }
 
+    
+    /**
+     * Sirve un archivo estático al cliente.
+     * 
+     * @param filename   Nombre del archivo a servir.
+     * @param outStream  Flujo de salida del cliente.
+     * @throws IOException Si ocurre un error de entrada/salida al leer o escribir el archivo.
+     */
+
     private static void serveFile(String filename, OutputStream outStream) throws IOException {
         File file = new File(STATIC_FILES_PATH + filename);
         if (file.exists() && !file.isDirectory()) {
@@ -84,13 +100,13 @@ public class HttpServer {
             byte[] buffer = new byte[1024];
             int bytesRead;
     
-            // Escribir encabezados de respuesta HTTP
+            // Escribe encabezados de respuesta HTTP
             PrintWriter out = new PrintWriter(outStream, true);
             out.println("HTTP/1.1 200 OK");
             out.println("Content-Type: " + contentType);
-            out.println(); // Blank line indicating end of headers
+            out.println(); 
     
-            // Escribir contenido del archivo en el flujo de salida
+            // Escribe contenido del archivo en el flujo de salida
             while ((bytesRead = fis.read(buffer)) != -1) {
                 outStream.write(buffer, 0, bytesRead);
             }
@@ -103,7 +119,12 @@ public class HttpServer {
     }
 
 
-    
+    /**
+     * Obtiene el tipo de contenido MIME para un archivo dado.
+     * 
+     * @param filename Nombre del archivo.
+     * @return Tipo de contenido MIME.
+     */
     private static String getContentType(String filename) {
         if (filename.endsWith(".html")) {
             return "text/html";
