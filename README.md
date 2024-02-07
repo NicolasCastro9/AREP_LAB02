@@ -31,6 +31,7 @@ Asegúrate de tener instalado Java y Maven en tu máquina antes de ejecutar el p
    http://localhost:35000/image.jpg
    http://localhost:35000/script.js
    http://localhost:35000/styles.css
+   http://localhost:35000/tiburon.gif
   ```
 
 ## CONSTRUIDO CON
