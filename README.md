@@ -21,11 +21,9 @@ Asegúrate de tener instalado Java y Maven en tu máquina antes de ejecutar el p
    git clone https://github.com/NicolasCastro9/AREP_LAB02.git
    ```
 2. Abrir en un IDE el proyecto descargado y ejecutar el archivo java HttpServer.java
-   ```
-   cd miprimera-app
-   ```
+   ![image](https://github.com/NicolasCastro9/AREP_LAB02/assets/98556822/6f6a5d9d-2f8c-4b36-9664-4219e02d295f)
 
-3. En el navegador de Mozilla Firefox escribir las siguientes direcciones para ver la funcionalidad de la aplicación
+4. En el navegador de Mozilla Firefox escribir las siguientes direcciones para ver la funcionalidad de la aplicación
   ```
    http://localhost:35000/index.html
    http://localhost:35000/image.jpg
