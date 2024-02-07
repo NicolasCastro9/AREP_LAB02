@@ -1,7 +1,7 @@
 package edu.escuelaing.arem.ASE.app;
+
 import java.io.*;
 import java.net.*;
-
 
 /**
  * Clase que crea el servidor HTTP
@@ -13,6 +13,8 @@ public class HttpServer {
      * @param args Argumentos de linea de comandos (no utilizados).
      * @throws IOException Si ocurre un error de entrada/salida al abrir el socket del servidor.
      */
+
+     private static final String STATIC_FILES_PATH = "pelis-app/src/main/Resources/";
     public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = null;
 
@@ -29,8 +31,8 @@ public class HttpServer {
             System.exit(1);
         }
         serverSocket.close();
-        
     }
+
     /**
      * Metodo que maneja la solicitud del cliente en un nuevo hilo separado.
      * @param clientSocket Socket del cliente.
@@ -39,71 +41,85 @@ public class HttpServer {
         try {
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-            String inputLine, outputLine;
-            String title = "";
+            String inputLine;
+            StringBuilder request = new StringBuilder();
+
             while ((inputLine = in.readLine()) != null) {
-                System.out.println("Received: " + inputLine);
-                if(inputLine.contains("title?name")){
-                    // se extrae el valor del name del URL
-                    String[] firstSplit = inputLine.split("=");
-                    title = (firstSplit[1].split("HTTP"))[0];
-                }
-                if (!in.ready()) {
+                if (inputLine.isEmpty()) {
                     break;
                 }
+                request.append(inputLine).append("\r\n");
             }
-            // Respuesta HTTP si la pelicula se encuentra en el cache
-            if(!title.isEmpty()){
-                String cachedInfo = Cache.inMemory(title);
-                outputLine = cachedInfo;
-            }else {
-            // Respuesta HTTP por defecto cuando se hace nueva busqueda o no se encuentra la pelicula
+            String requestString = request.toString();
+            if (requestString.contains("GET /title?name=")) {
+                String[] parts = requestString.split(" ");
+                String title = parts[1].substring("/title?name=".length());
                 try {
-                    
-                    File file = new File("pelis-app/src/main/Resources/index.html");
-                    String absolutePath = file.getAbsolutePath();
-                    FileReader fileReader = new FileReader(absolutePath);
-
-                    BufferedReader bufferedReader = new BufferedReader(fileReader);
-                    StringBuilder stringBuilder = new StringBuilder();
-                    String line;
-
-                    while ((line = bufferedReader.readLine()) != null) {
-                        stringBuilder.append(line).append("\n");
-                    }
-
-                    fileReader.close();
-                    String content = stringBuilder.toString();
-                    outputLine = "HTTP/1.1 200 OK\r\n" +
-                            "Content-Type: text/html\r\n" +
-                            "Content-Length: " + content.length() + "\r\n" +
-                            "\r\n" +
-                            content;
-                } catch (FileNotFoundException e) {
-                    outputLine = "HTTP/1.1 404 Not Found\r\n" +
-                            "Content-Type: text/html\r\n" +
-                            "\r\n" +
-                            "<!DOCTYPE html>\n" +
-                            "<html>\n" +
-                            "    <head>\n" +
-                            "        <title>404 Not Found</title>\n" +
-                            "    </head>\n" +
-                            "    <body>\n" +
-                            "        <h1>404 Not Found</h1>\n" +
-                            "        <p>The requested resource was not found on this server.</p>\n" +
-                            "    </body>\n" +
-                            "</html>";
+                    String movieInfo = Cache.inMemory(title);
+                    out.println("HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n" + movieInfo);
+                } catch (IOException e) {
+                    out.println("HTTP/1.1 500 Internal Server Error\r\n\r\nError processing request");
+                }
+            } 
+            String[] parts = requestString.split(" ");
+            String resource = parts[1].substring(1);
+            try {
+                serveFile(resource, clientSocket.getOutputStream());
+            } catch (IOException e) {
+                out.println("HTTP/1.1 404 Not Found\r\n");
             }
-        }
-        out.println(outputLine);
-        out.close();
-        in.close();
-        clientSocket.close();
-            
-
+            out.close();
+            in.close();
+            clientSocket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
     }
+
+    private static void serveFile(String filename, OutputStream outStream) throws IOException {
+        File file = new File(STATIC_FILES_PATH + filename);
+        if (file.exists() && !file.isDirectory()) {
+            String contentType = getContentType(filename);
+            FileInputStream fis = new FileInputStream(file);
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+    
+            // Escribir encabezados de respuesta HTTP
+            PrintWriter out = new PrintWriter(outStream, true);
+            out.println("HTTP/1.1 200 OK");
+            out.println("Content-Type: " + contentType);
+            out.println(); // Blank line indicating end of headers
+    
+            // Escribir contenido del archivo en el flujo de salida
+            while ((bytesRead = fis.read(buffer)) != -1) {
+                outStream.write(buffer, 0, bytesRead);
+            }
+            fis.close();
+        } else {
+            // Si el archivo no existe, devolver código de error 404
+            PrintWriter out = new PrintWriter(outStream, true);
+            out.println("HTTP/1.1 404 Not Found\r\n");
+        }
+    }
+
+
+    
+    private static String getContentType(String filename) {
+        if (filename.endsWith(".html")) {
+            return "text/html";
+        } else if (filename.endsWith(".css")) {
+            return "text/css";
+        } else if (filename.endsWith(".js")) {
+            return "text/javascript";
+        } else if (filename.endsWith(".jpg") || filename.endsWith(".jpeg")) {
+            return "image/jpeg";
+        } else if (filename.endsWith(".png")) {
+            return "image/png";
+        } else if (filename.endsWith(".gif")) {
+            return "image/gif";
+        } else {
+            return "application/octet-stream";
+        }
+    }
+
 }

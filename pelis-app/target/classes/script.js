@@ -7,4 +7,7 @@ function loadGetMsg() {
     }
     xhttp.open("GET", "/title?name=" + nameVar);
     xhttp.send();
+    xhttp.overrideMimeType('text/html');
+    xhttp.open("GET", "/title?name=" + nameVar);
+    xhttp.send();
 }
