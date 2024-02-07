@@ -2,10 +2,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>edu.escuelaing.arem.ASE.app</groupId>
-  <artifactId>miprimera-app</artifactId>
+  <artifactId>pelis-app</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>miprimera-app</name>
+  <name>pelis-app</name>
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
@@ -47,7 +47,7 @@
             <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>exec-maven-plugin</artifactId>
-            <version>3.0.0</version> <!-- Asegúrate de usar la versión más reciente -->
+            <version>3.0.0</version> 
             <executions>
                 <execution>
                     <goals>
