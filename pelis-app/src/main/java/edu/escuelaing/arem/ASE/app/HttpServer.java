@@ -7,14 +7,13 @@ import java.net.*;
  * Clase que crea el servidor HTTP
  */
 public class HttpServer {
+    private static final String STATIC_FILES_PATH = "pelis-app/target/classes/public/";
 
     /**
      * Metodo principal de la clase que inicia el servidor y escucha conexiones en el puerto 35000.
      * @param args Argumentos de linea de comandos (no utilizados).
      * @throws IOException Si ocurre un error de entrada/salida al abrir el socket del servidor.
-     */
-
-     private static final String STATIC_FILES_PATH = "pelis-app/src/main/resources/public/";
+     */ 
     public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = null;
 
@@ -76,7 +75,13 @@ public class HttpServer {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Método que sirve un archivo estático al cliente.
+     *
+     * @param filename   Nombre del archivo.
+     * @param outStream  Flujo de salida del cliente.
+     * @throws IOException Si ocurre un error de entrada/salida al servir el archivo.
+     */
     private static void serveFile(String filename, OutputStream outStream) throws IOException {
         File file = new File(STATIC_FILES_PATH + filename);
         if (file.exists() && !file.isDirectory()) {
@@ -104,7 +109,12 @@ public class HttpServer {
     }
 
 
-    
+        /**
+     * Método que devuelve el tipo de contenido basado en el nombre del archivo.
+     *
+     * @param filename Nombre del archivo.
+     * @return Tipo de contenido.
+     */
     private static String getContentType(String filename) {
         if (filename.endsWith(".html")) {
             return "text/html";
